@@ -10,12 +10,4 @@ class UsersController < ApplicationController
       validation = false
     end
   end
-
-
-  def generateCode
-
-    code = SecureRandom.hex[0, 4].upcase
-
-  end
-
 end
