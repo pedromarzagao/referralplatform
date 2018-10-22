@@ -4,6 +4,11 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def show
+    user_id = params[:id].to_i
+    @user = User.find_by(id: user_id)
+    @referral_token = @user.generate_referral_token
+  end
 
   def create
   @user = User.new(user_params)

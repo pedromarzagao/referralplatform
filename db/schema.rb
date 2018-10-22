@@ -10,30 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_21_230153) do
-
-  create_table "affiliates", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "firstname"
-    t.string "email"
-  end
-
-  create_table "purchases", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "referrals", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "tokens", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "code"
-  end
+ActiveRecord::Schema.define(version: 2018_10_22_232746) do
 
   create_table "users", force: :cascade do |t|
     t.string "firstname"
@@ -44,6 +21,8 @@ ActiveRecord::Schema.define(version: 2018_10_21_230153) do
     t.string "username"
     t.string "login_token"
     t.datetime "token_generated_at"
+    t.integer "referred_by"
+    t.string "referral_token"
   end
 
 end

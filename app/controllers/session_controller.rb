@@ -3,18 +3,20 @@ class SessionController < ApplicationController
   token = params[:token].to_s
   user_id = params[:user_id]
   user = User.find_by(id: user_id)
+  #binding.pry
 
-  if !user || !user.valid_token?
-    redirect_to root_path, notice: 'It seems your link is invalid. Try requesting for a new login link'
-  elsif user.login_token_expired?
-    redirect_to root_path, notice: 'Your login link has been expired. Try requesting for a new login link.'
-  else
-    sign_in_user(user)
-    redirect_to root_path, notice: 'You have been signed in!'
+    if !user || !user.valid_token?(token, user)
+      redirect_to root_path, notice: 'It seems your link is invalid. Try requesting for a new login link'
+    elsif user.login_token_expired?
+      redirect_to root_path, notice: 'Your login link has been expired. Try requesting for a new login link.'
+    else
+      sign_in_user(user)
+      redirect_to user_path(user_id), notice: 'You have been signed in!'
+    end
   end
 
   def new
-end
+  end
 
   def create
     value = params[:value].to_s
