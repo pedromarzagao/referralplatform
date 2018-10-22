@@ -1,6 +1,11 @@
 class AffiliatesController < ApplicationController
  def show
   @affiliate = Affiliate.find(params[:email])
-  code = SecureRandom.hex[0, 4].upcase
+
+ end
+
+ def tokens
+  @affiliate = Affiliate.find(params[:email])
+  @tokens = @affiliate.tokens
  end
 end

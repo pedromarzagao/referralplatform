@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_20_223243) do
+ActiveRecord::Schema.define(version: 2018_10_21_230153) do
 
   create_table "affiliates", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2018_10_20_223243) do
   create_table "tokens", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "code"
   end
 
   create_table "users", force: :cascade do |t|
@@ -39,6 +40,10 @@ ActiveRecord::Schema.define(version: 2018_10_20_223243) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "fullname"
+    t.string "username"
+    t.string "login_token"
+    t.datetime "token_generated_at"
   end
 
 end
