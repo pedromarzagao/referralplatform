@@ -44,10 +44,6 @@ class User < ApplicationRecord
     token == user.login_token
   end
 
-  def generate_referral_token
-    self.referral_token = generate_token
-  end
-
   private
 
   def generate_token

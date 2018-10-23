@@ -7,11 +7,12 @@ class UsersController < ApplicationController
   def show
     user_id = params[:id].to_i
     @user = User.find_by(id: user_id)
-    @referral_token = @user.generate_referral_token
+    @referral_link = referral_link
   end
 
   def create
   @user = User.new(user_params)
+  @user.referral_token = generate_referral_token
 
     if @user.save
       @user.send_login_link(@user)
@@ -23,6 +24,16 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:fullname, :username, :email)
+  end
+
+  def referral_link
+    "http://localhost:3000/join/r=#{@user.referral_token}"
+  end
+
+  private
+
+  def generate_referral_token
+    SecureRandom.hex(10)
   end
 
 end
