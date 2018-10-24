@@ -1,0 +1,12 @@
+<h3>Resend your login link</h3>
+
+<%= form_for :email do |f| %>
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Go' %>
+  </div>
+<% end %>

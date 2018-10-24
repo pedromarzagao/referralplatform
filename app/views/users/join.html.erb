@@ -1,5 +1,7 @@
 <h1>Welcome to Boords!</h1>
-<h2>You've been referred by <%= @referred_by.fullname %></h2>
+<% referral = params[:r] %>
+<% referred_by = User.find_by(referral_token: referral) %>
+<h2>You've been referred by <%= referred_by.fullname %></h2>
 
 <h3>Leave your contact details below</h3>
 

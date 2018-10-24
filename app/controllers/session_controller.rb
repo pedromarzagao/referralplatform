@@ -3,7 +3,7 @@ class SessionController < ApplicationController
   token = params[:token].to_s
   user_id = params[:user_id]
   user = User.find_by(id: user_id)
-  binding.pry
+  # binding.pry
 
     if !user || !user.valid_token?(token, user)
       redirect_to root_path, notice: 'It seems your link is invalid. Try requesting for a new login link'

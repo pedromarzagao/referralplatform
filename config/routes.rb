@@ -6,9 +6,11 @@ Rails.application.routes.draw do
   get 'pages/home'
   get 'pages/help'
   root 'static#home'
+  get '/resend_login', to:'users#resend_login'
+  post '/resend_login', to:'users#resend_login_link'
 
   resources :session, only: [:new, :create]
-  resources :users, only: [:create, :show]
+  resources :users, only: [:create, :show, :resend_login_link]
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
