@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get '/auth/:user_id/:token', to: 'session#auth'
+  get '/join', to:'users#join'
   get '/register', to: 'users#register'
   get 'static/home'
   get 'pages/home'

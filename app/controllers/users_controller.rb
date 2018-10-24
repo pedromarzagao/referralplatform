@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   def create
   @user = User.new(user_params)
   @user.referral_token = generate_referral_token
+  @user.login_token = generate_login_token
 
     if @user.save
       @user.send_login_link(@user)
@@ -22,12 +23,29 @@ class UsersController < ApplicationController
     end
   end
 
+  def join
+    referral = params[:r]
+    referred_by = User.find_by(referral_token: referral)
+    @user = User.new(user_params)
+    @user.referred_by = referred_by
+
+    if @user.save
+      flash[:success] = "Thanks! I'll be in touch soon!"
+      redirect_to :action => 'new'
+    else
+      render :action => 'new'
+    end
+  end
+
+  def join_successfully
+  end
+
   def user_params
-    params.require(:user).permit(:fullname, :username, :email)
+    params.require(:user).permit(:fullname, :email)
   end
 
   def referral_link
-    "http://localhost:3000/join/r=#{@user.referral_token}"
+    "http://localhost:3000/join?r=#{@user.referral_token}"
   end
 
   private

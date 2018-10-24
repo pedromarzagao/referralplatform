@@ -1,4 +1,7 @@
-<h1>Register</h1>
+<h1>Welcome to Boords!</h1>
+<h2>You've been referred by <%= @referred_by.fullname %></h2>
+
+<h3>Leave your contact details below</h3>
 
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
@@ -29,6 +32,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit 'Register' %>
+    <%= f.submit 'Join Boords' %>
   </div>
 <% end %>
+

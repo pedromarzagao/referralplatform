@@ -1,1 +1,14 @@
-<%= @referral_link %>
+<h1> Your Dashboard </h1>
+
+<% if !@user.referred_by.nil? %>
+  <p><"You've been referred by #{@user.referred_by}"/p>
+<% end %>
+
+<h2> Your #<%= @referral_link %></h2>
+
+<%= @user.referred_by %>
+
+
+<% if @user.admin %>
+  <%= User.all %>
+<% end %>

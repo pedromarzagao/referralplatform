@@ -1,2 +1,2 @@
-email,firstname
-pedromarzagao@gmail.com, Pedro
+email,fullname,admin
+pedromarzagao@gmail.com, Pedro, true

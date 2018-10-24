@@ -10,19 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_22_232746) do
+ActiveRecord::Schema.define(version: 2018_10_23_230819) do
 
-  create_table "users", force: :cascade do |t|
-    t.string "firstname"
-    t.string "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "fullname"
-    t.string "username"
-    t.string "login_token"
-    t.datetime "token_generated_at"
-    t.integer "referred_by"
-    t.string "referral_token"
-  end
+# Could not dump table "users" because of following StandardError
+#   Unknown type 'bolean' for column 'admin'
 
 end
