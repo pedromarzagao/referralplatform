@@ -12,7 +12,17 @@
 
 ActiveRecord::Schema.define(version: 2018_10_23_230819) do
 
-# Could not dump table "users" because of following StandardError
-#   Unknown type 'bolean' for column 'admin'
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "fullname"
+    t.string "username"
+    t.string "login_token"
+    t.datetime "token_generated_at"
+    t.string "referred_by"
+    t.string "referral_token"
+    t.boolean "admin"
+  end
 
 end

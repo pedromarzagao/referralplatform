@@ -31,6 +31,7 @@
   <div class="field">
     <%= f.label :email %>
     <%= f.text_field :email %>
+    <%= f.hidden_field :r, :value => params[:r] %>
   </div>
 
   <div class="actions">

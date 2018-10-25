@@ -11,7 +11,7 @@ class SessionController < ApplicationController
       redirect_to root_path, notice: 'Your login link has been expired. Try requesting for a new login link.'
     else
       sign_in_user(user)
-      redirect_to user_path(user_id), notice: 'You have been signed in!'
+      redirect_to user_path(user_id, token), notice: 'You have been signed in!'
     end
   end
 

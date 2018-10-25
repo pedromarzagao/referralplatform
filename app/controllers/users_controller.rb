@@ -6,16 +6,37 @@ class UsersController < ApplicationController
 
   def show
     user_id = params[:id].to_i
+    token = params[:token]
     @user = User.find_by(id: user_id)
-    @referral_link = referral_link
+    if @user.nil?
+      render "static/home"
+    else
+      if @user.login_token != token
+        render "static/home"
+      else
+        if @user.referral_token.nil?
+          @user.referral_token = generate_referral_token
+          referral_link
+          @user.save!
+        end
+      @referral_link = referral_link
+      end
+    end
   end
 
   def create
-  @user = User.new(user_params)
-  if params[:r] != nil
-    referral = params[:r]
-    referred_by = User.find_by(referral_token: referral)
+  if params[:user][:r].nil?
+    @user = User.new(user_params)
+  else
+    referral = params[:user][:r]
+    referred_by = User.find_by(referral_token: referral).email
+    @user = User.new(user_params)
     @user.referred_by = referred_by
+    binding.pry
+    if @user.save!
+    else
+      render :join
+    end
   end
   @user.referral_token = generate_referral_token
   @user.login_token = generate_login_token
@@ -46,9 +67,6 @@ class UsersController < ApplicationController
     # end
   end
 
-  def join_successfully
-  end
-
   def resend_login_link
     email = params[:email][:email]
     user = User.find_by(email: email)
@@ -68,12 +86,8 @@ class UsersController < ApplicationController
     # binding.pry
   end
 
-  def recovery_params
-    params.require(:email).permit(:email)
-  end
-
   def user_params
-    params.require(:user).permit(:fullname, :email)
+    params.require(:user).permit(:fullname, :email, :r)
   end
 
   def referral_link

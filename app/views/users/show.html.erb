@@ -8,8 +8,29 @@
 
 <%= @user.referred_by %>
 
-<% if @user.admin %>
-  <%= User.all %>
-<% end %>
 
+  <% if @user.admin %>
+    <div class="users-table">
+      <table class="table">
+          <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Login Token</th>
+            <th>Referral Token</th>
+            <th>Referred By</th>
+            <th>Admin?</th>
+          </tr>
+          <% User.all.each do |user| %>
+            <tr>
+              <td><%= user.fullname %></td>
+              <td><%= user.email %></td>
+              <td><%= user.login_token %></td>
+              <td><%= user.referral_token %></td>
+              <td><%= user.referred_by %></td>
+              <td><%= user.admin %></td>
+            </tr>
+          <% end %>
+      </table>
+    </div>
+  <% end %>
 

@@ -1,8 +1,8 @@
 class User < ApplicationRecord
-  has_many :purchases;
+  has_many :purchases
   has_one :referral
   validates :email, uniqueness: true, presence: true
-
+  attr_accessor :r
   before_save :format_email
 
   def format_email
