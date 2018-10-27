@@ -19,6 +19,14 @@ class UsersController < ApplicationController
           referral_link
           @user.save!
         end
+        users = User.all
+        users.each do |user|
+          if user.login_token.nil?
+            user.login_token = generate_login_token
+            user.token_generated_at = generate_login_token_timestamp
+            user.save!
+          end
+        end
       @referral_link = referral_link
       end
     end

@@ -18,15 +18,6 @@ class User < ApplicationRecord
     UserMailer.login_link(user, login_link).deliver_now
   end
 
-  # def generate_login_token
-  #   self.login_token = generate_token
-  #   self.token_generated_at = Time.now.utc
-  # end
-
-  # def login_link
-  #   "http://localhost:3000/auth/#{self.id}/#{self.login_token}"
-  # end
-
   def login_token_expired?
     Time.now.utc > (self.token_generated_at + token_validity)
   end
@@ -41,10 +32,6 @@ class User < ApplicationRecord
   end
 
   private
-
-  # def generate_token
-  #   SecureRandom.hex(10)
-  # end
 
   def token_validity
     2.hours
